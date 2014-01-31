@@ -22,6 +22,3 @@
 #' # ~~ simple examples of the most important functions ~~
 #' 
 NULL
-
-
-
