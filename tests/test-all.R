@@ -1,4 +1,4 @@
 library(testthat)
-library(Template)
+library(grex)
 
-test_check("Template")
+test_check("grex")
