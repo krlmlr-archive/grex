@@ -2,7 +2,7 @@
 \alias{run.simulation}
 \title{Runs a simulation experiment}
 \usage{
-run.simulation(params, experiment, preparer)
+run.simulation(params, experiment, preparer = list())
 }
 \arguments{
   \item{params}{A named list of parameter vectors.}
