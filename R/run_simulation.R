@@ -12,5 +12,5 @@
 #'                list(a=function(a) list(x=a*a),
 #'                     b=function(a, b) if (b < 4) list(y=b-3) else list(y=a)))
 #' @export
-run.simulation <- function(params, experiment, preparer) {
+run.simulation <- function(params, experiment, preparer=list()) {
 }
