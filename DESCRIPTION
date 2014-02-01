@@ -2,8 +2,8 @@ Package: grex
 Type: Package
 Encoding: UTF-8
 Title: EXecuting simulations with parameters based on a GRid
-Version: 0.0.1
-Date: 2014-01-31
+Version: 0.0.2
+Date: 2014-02-01
 Author: Kirill Müller
 Maintainer: Kirill Müller <kirill.mueller@ivt.baug.ethz.ch>
 Description: This package simplifies the setup of simulation experiments with

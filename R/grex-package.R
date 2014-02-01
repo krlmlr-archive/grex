@@ -6,8 +6,8 @@
 #' \tabular{ll}{
 #'   Package: \tab grex\cr
 #'   Type: \tab Package\cr
-#'   Version: \tab 0.0.1\cr
-#'   Date: \tab 2014-01-31\cr
+#'   Version: \tab 0.0.2\cr
+#'   Date: \tab 2014-02-01\cr
 #'   License: \tab GPL-3\cr
 #' } ~~
 #' 
