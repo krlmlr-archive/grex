@@ -2,14 +2,12 @@
 \alias{run.simulation}
 \title{Runs a simulation experiment}
 \usage{
-run.simulation(params, experiment, preparer = list())
+run.simulation(params, preparers = list())
 }
 \arguments{
   \item{params}{A named list of parameter vectors.}
 
-  \item{experiment}{A function.}
-
-  \item{preparer}{A named list of functions, defaults to
+  \item{preparers}{A named list of functions, defaults to
   \code{list()}.}
 }
 \value{
@@ -22,8 +20,9 @@ This function runs an experiment for all combinations of
   expansion
 }
 \examples{
-run.simulation(list(a=1:3, b=2:5), function(x, y) list(z=x-y),
+run.simulation(list(a=1:2, b=2:4, experiment=TRUE),
                list(a=function(a) list(x=a*a),
-                    b=function(a, b) if (b < 4) list(y=b-3) else list(y=a)))
+                    b=function(a, b) if (b < 4) list(y=b-3) else list(y=a),
+                    experiment=function(x, y) list(z=x-y)))
 }
 
