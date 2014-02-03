@@ -22,6 +22,7 @@
 #' @seealso \code{\link[plyr]{llply}}, \code{\link{expand.grid}}
 #' @export
 #' @importFrom plyr llply
+#' @importFrom logging logdebug loginfo
 run.simulation <- function(params, preparers=list(), ...) {
   stopifnot(!is.null(names(params)))
   stopifnot(names(params) == unique(names(params)))
@@ -34,6 +35,7 @@ run.simulation <- function(params, preparers=list(), ...) {
 
   for (param.index in seq_along(params)) {
     param <- params[[param.index]]
+    loginfo(param)
     param.name <- names(params)[[param.index]]
     param.len <- length(param)
     stopifnot(param.len > 0L)
@@ -42,6 +44,7 @@ run.simulation <- function(params, preparers=list(), ...) {
     colnames(new.param.frame) <- param.name
     new.param.frame <- merge(param.frame, new.param.frame, by=c())
 
+    logdebug(nrow(new.param.frame))
     new.envs <- llply(
       seq_len(nrow(new.param.frame)),
       function(row) {
@@ -66,6 +69,9 @@ run.simulation <- function(params, preparers=list(), ...) {
 
     param.frame <- new.param.frame
     envs <- new.envs
+
+    logdebug(object.size(param.frame))
+    logdebug(object.size(envs))
   }
 
   structure(

@@ -10,7 +10,8 @@ Description: This package simplifies the setup of simulation experiments with
     more than one input parameter, with support for parallelization
 License: GPL-3
 Imports:
-    plyr
+    plyr,
+    logging
 Suggests:
     testthat
 Roxygen: list(wrap = FALSE)
