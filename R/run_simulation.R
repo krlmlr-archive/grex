@@ -42,7 +42,7 @@ run.simulation <- function(params, preparers=list(), ...) {
 
     new.param.frame <- data.frame(param)
     colnames(new.param.frame) <- param.name
-    new.param.frame <- merge(param.frame, new.param.frame, by=c())
+    new.param.frame <- merge(new.param.frame, param.frame, by=c())
 
     logdebug(nrow(new.param.frame))
     new.envs <- llply(
