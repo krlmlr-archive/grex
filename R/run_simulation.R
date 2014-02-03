@@ -11,7 +11,8 @@
 #'   
 #' @param params A named list of parameter vectors.
 #' @param preparers A named list of functions, defaults to \code{list()}.
-#' @inheritParams plyr::llply
+#' @param ... Further parameters passed down to the main
+#'   \code{\link[plyr]{llply}} call
 #' @return An object of class \code{grex}.
 #' @examples
 #' run.simulation(list(a=1:2, b=2:4, experiment=TRUE),
@@ -21,8 +22,7 @@
 #' @seealso \code{\link[plyr]{llply}}, \code{\link{expand.grid}}
 #' @export
 #' @importFrom plyr llply
-run.simulation <- function(params, preparers=list(),
-                           .parallel=FALSE, .paropts=NULL) {
+run.simulation <- function(params, preparers=list(), ...) {
   stopifnot(!is.null(names(params)))
   stopifnot(names(params) == unique(names(params)))
   stopifnot(length(preparers) == 0L || !is.null(names(preparers)))
@@ -61,8 +61,7 @@ run.simulation <- function(params, preparers=list(),
         }
         env
       },
-      .parallel=.parallel,
-      .paropts=.paropts
+      ...
     )
 
     param.frame <- new.param.frame

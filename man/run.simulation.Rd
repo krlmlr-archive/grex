@@ -2,8 +2,7 @@
 \alias{run.simulation}
 \title{Runs a simulation experiment}
 \usage{
-run.simulation(params, preparers = list(), .parallel = FALSE,
-  .paropts = NULL)
+run.simulation(params, preparers = list(), ...)
 }
 \arguments{
   \item{params}{A named list of parameter vectors.}
@@ -11,16 +10,8 @@ run.simulation(params, preparers = list(), .parallel = FALSE,
   \item{preparers}{A named list of functions, defaults to
   \code{list()}.}
 
-  \item{.parallel}{if \code{TRUE}, apply function in
-  parallel, using parallel backend provided by foreach}
-
-  \item{.paropts}{a list of additional options passed into
-  the \code{\link[foreach]{foreach}} function when parallel
-  computation is enabled.  This is important if (for
-  example) your code relies on external data or packages:
-  use the \code{.export} and \code{.packages} arguments to
-  supply them so that all cluster nodes have the correct
-  environment set up for computing.}
+  \item{...}{Further parameters passed down to the main
+  \code{\link[plyr]{llply}} call}
 }
 \value{
 An object of class \code{grex}.
