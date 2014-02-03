@@ -11,7 +11,7 @@ more than one input parameter, with support for parallelization
 \tabular{ll}{
   Package: \tab grex\cr
   Type: \tab Package\cr
-  Version: \tab 0.0.3\cr
+  Version: \tab 0.0.4\cr
   Date: \tab 2014-02-03\cr
   License: \tab GPL-3\cr
 } ~~
