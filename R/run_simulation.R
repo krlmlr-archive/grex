@@ -56,8 +56,8 @@ run.simulation <- function(params, preparers=list(), ...) {
                         params[seq(from=param.index + 1, length.out=params.len - param.index)])
           preparer.args <- formals(preparer)
           preparer.args.names <- names(preparer.args)
-          logdebug(str(preparer.args.names))
-          logdebug(str(names(call.env)))
+          logdebug(paste(setdiff(preparer.args.names, names(call.env)), collapse=", "))
+          logdebug(paste(setdiff(names(call.env), preparer.args.names), collapse=", "))
           stopifnot(preparer.args.names %in% names(call.env))
 
           return.env <- do.call(preparer, call.env[preparer.args.names])
