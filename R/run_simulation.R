@@ -12,6 +12,7 @@
 #'                     b=function(a, b) if (b < 4) list(y=b-3) else list(y=a),
 #'                     experiment=function(x, y) list(z=x-y)))
 #' @export
+#' @importFrom plyr llply
 run.simulation <- function(params, preparers=list()) {
   stopifnot(!is.null(names(params)))
   stopifnot(names(params) == unique(names(params)))
@@ -32,24 +33,26 @@ run.simulation <- function(params, preparers=list()) {
     colnames(new.param.frame) <- param.name
     new.param.frame <- merge(param.frame, new.param.frame, by=c())
 
-    new.envs <- vector(mode="list", length=nrow(new.param.frame))
-    for (row in seq_len(nrow(new.param.frame))) {
-      env.pos <- (row - 1L) %/% param.len + 1
-      env <- envs[[env.pos]]
-      if (!is.null(preparer <- preparers[[param.name]])) {
-        call.env <- c(env,
-                      as.list(new.param.frame[row, , drop=F]),
-                      params[seq(from=param.index + 1, length.out=params.len - param.index)])
-        preparer.args <- formals(preparer)
-        preparer.args.names <- names(preparer.args)
-        stopifnot(preparer.args.names %in% names(call.env))
+    new.envs <- llply(
+      seq_len(nrow(new.param.frame)),
+      function(row) {
+        env.pos <- (row - 1L) %/% param.len + 1
+        env <- envs[[env.pos]]
+        if (!is.null(preparer <- preparers[[param.name]])) {
+          call.env <- c(env,
+                        as.list(new.param.frame[row, , drop=F]),
+                        params[seq(from=param.index + 1, length.out=params.len - param.index)])
+          preparer.args <- formals(preparer)
+          preparer.args.names <- names(preparer.args)
+          stopifnot(preparer.args.names %in% names(call.env))
 
-        return.env <- do.call(preparer, call.env[preparer.args.names])
-        stopifnot(!any(names(return.env) %in% colnames(new.param.frame)))
-        env[names(return.env)] <- return.env
+          return.env <- do.call(preparer, call.env[preparer.args.names])
+          stopifnot(!any(names(return.env) %in% colnames(new.param.frame)))
+          env[names(return.env)] <- return.env
+        }
+        env
       }
-      new.envs[[row]] <- env
-    }
+    )
 
     param.frame <- new.param.frame
     envs <- new.envs

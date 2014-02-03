@@ -9,6 +9,8 @@ Maintainer: Kirill Müller <kirill.mueller@ivt.baug.ethz.ch>
 Description: This package simplifies the setup of simulation experiments with
     more than one input parameter, with support for parallelization
 License: GPL-3
+Imports:
+    plyr
 Suggests:
     testthat
 Roxygen: list(wrap = FALSE)
