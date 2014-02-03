@@ -22,7 +22,7 @@
 #' @seealso \code{\link[plyr]{llply}}, \code{\link{expand.grid}}
 #' @export
 #' @importFrom plyr llply
-#' @importFrom logging logdebug loginfo
+#' @importFrom logging logdebug loginfo levellog
 run.simulation <- function(params, preparers=list(), ...) {
   stopifnot(!is.null(names(params)))
   stopifnot(names(params) == unique(names(params)))

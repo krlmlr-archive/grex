@@ -1,4 +1,5 @@
 export(run.simulation)
+importFrom(logging,levellog)
 importFrom(logging,logdebug)
 importFrom(logging,loginfo)
 importFrom(plyr,llply)
