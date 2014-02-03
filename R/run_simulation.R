@@ -35,8 +35,8 @@ run.simulation <- function(params, preparers=list(), ...) {
 
   for (param.index in seq_along(params)) {
     param <- params[[param.index]]
-    loginfo(param)
     param.name <- names(params)[[param.index]]
+    loginfo(param.name)
     param.len <- length(param)
     stopifnot(param.len > 0L)
 
